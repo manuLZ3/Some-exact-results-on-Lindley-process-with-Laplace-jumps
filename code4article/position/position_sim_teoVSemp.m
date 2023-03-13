@@ -7,15 +7,15 @@ addpath(genpath(pwd));
 
 %% Parameters
 % time index of Lindley process
-n=10;
+n=4;
 % number of samples
 num_samples=10000000;
 % Drift of the process - mean of the increment
-mu=-0.8;
+mu=-1.8;
 % standard error of the increment
-s=1;
+s=10;
 % initial condition
-x=4;
+x=1;
 
 
 %% Simulated density
@@ -76,6 +76,6 @@ xlabel('Position');
 ylabel('Density');
 title(['W_{', num2str(n), '} density.  \mu: ', num2str(mu) , ',  \sigma:  ', num2str(s), ', x: ', num2str(x)]);
 %legend([l2 l3],{'analitica', 'ricorsiva'})
-legend(l2,{'teorica'});
+legend([l1,l2],{'empirica', 'teorica'});
 p2.MarkerSize = 20;
 
