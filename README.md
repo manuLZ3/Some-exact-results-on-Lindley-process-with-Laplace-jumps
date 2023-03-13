@@ -8,3 +8,5 @@ To run the code for the analysis of the position density:
 2-open with MATLAB: position_sim_empVSteo.m
 
 3-initialize some parameters in the first section of the script and RUN.
+
+To run the code for the analysis of the stopping probability:
