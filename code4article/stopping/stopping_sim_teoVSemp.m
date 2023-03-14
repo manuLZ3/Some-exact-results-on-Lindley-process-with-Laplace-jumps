@@ -10,13 +10,13 @@ addpath(genpath(pwd)) % useless
 series_length=70;
 num_samples=1000000;
 % Mean of incrementes - trend of Linldey process
-media=1;
-% standard error of increments
-s=1;
+media=-0.4;
+% standard error of increments - it must be positive
+s=2;
 % initial condition of the process
-posizione_init=0;
-% barrier 
-h=20;
+posizione_init=6;
+% barrier - it must be positive
+h=8;
 % greatest integer for which we want the theorical probability of stopping
 n_max=50;
 
@@ -45,19 +45,19 @@ ps_teo = zeros(1, n_max);
 if media > 0 && media < h    
     fprintf("0<mu<h \n");
     for i = 1:n_max
-            [ps_teo(i),A_n,B_n,C_n] = Prob(h, i, media, s, posizione_init);
+            [ps_teo(i),A_n,B_n,C_n] = ProbN(h, i, media, s, posizione_init);
     end
-elseif media >= h
+elseif media > 0 && media >= h
     fprintf("h=<mu \n");
     for n = 1:n_max
-        ps_teo(n) = Prob_N_conLuguale1(h, n, media, s, posizione_init);
+        ps_teo(n) = ProbN_muBiggerThanH(h, n, media, s, posizione_init);
     end
 elseif media < 0 && media > -h
     fprintf("-h<mu<0 \n");
     for n = 1:n_max
         ps_teo(n) = ProbN_muSmallerThan0(h, n, media, s, posizione_init);
     end
-elseif media <= -h
+elseif media < 0 && media <= -h
     fprintf("mu<=-h \n");
     for n = 1:n_max
         ps_teo(n) = ProbN_muSmallerThanMinusH(h, n, media, s, posizione_init);

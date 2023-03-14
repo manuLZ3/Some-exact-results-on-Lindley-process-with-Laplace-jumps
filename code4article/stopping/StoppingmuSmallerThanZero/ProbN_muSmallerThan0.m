@@ -3,6 +3,8 @@ function  [pn,A_n,B_n,C_n]=ProbN_muSmallerThan0(h, n, k, s, w)
     % check initial position of the walk
     if w<0 || w>=h
         fprintf('Error, w is out of range')
+
+    %% Find bin index of the interval containing ´w´
     end
     % smaller integer such that ´H*k>h´. Number of bins in the partition
     H = ceil(h/-k);
@@ -16,10 +18,10 @@ function  [pn,A_n,B_n,C_n]=ProbN_muSmallerThan0(h, n, k, s, w)
     % ..equivalently
     %bin_index = L-floor((h-w)/k);    
 
-    % grado massimo
-    m_n_1 = (n-1); %min(n,H-1+1)-1; %min(n,L-i+1)-1;
     
     %% monomi
+    % max degree
+    m_n_1 = (n-1);
     p = 0:m_n_1;
     monomi = transpose((w+(n-1)*k).^p);
 
@@ -28,6 +30,5 @@ function  [pn,A_n,B_n,C_n]=ProbN_muSmallerThan0(h, n, k, s, w)
 
     
     %% probabilità di arresto in n - formula (4.2)
-    %pn = 1/(2^n*s^(n-1))*( mtimes(A_n(bin_index,:), monomi)*exp(w/s) + mtimes(B_n(bin_index,:), monomi)*exp(-w/s) ) + C_n(bin_index);
     pn = ( mtimes(A_n(bin_index,:), monomi)*exp(w/s) + mtimes(B_n(bin_index,:), monomi)*exp(-w/s) ) + C_n(bin_index);
 end

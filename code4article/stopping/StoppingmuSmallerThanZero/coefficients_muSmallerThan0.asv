@@ -21,7 +21,7 @@ function [A_n,B_n,C_n] = coefficients_muSmallerThan0(h,n,mu,s)
        C_n = transpose(repelem(0,               H));
        
    else
-       %% Recursion - formula (xx)
+        %% Recursion
        % make coefficients at the previos step
        [A_n_pre,B_n_pre,C_n_pre] = coefficients_muSmallerThan0(h,n-1,mu,s);
        

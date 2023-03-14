@@ -1,4 +1,4 @@
-function  [pn,A_n,B_n,C_n]=Prob(h, n, k, s, w)
+function  [pn,A_n,B_n,C_n]=ProbN(h, n, k, s, w)
     
     % check initial position of the walk
     if w<0 || w>=h

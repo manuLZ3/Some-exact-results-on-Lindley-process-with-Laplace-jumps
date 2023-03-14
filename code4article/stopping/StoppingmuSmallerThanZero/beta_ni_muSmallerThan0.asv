@@ -4,7 +4,7 @@ function b_ni0s = beta_ni_muSmallerThan0(h,n,H,mu,s, A_n_pre,B_n_pre,C_n_pre)
     %{ ==============================================================
     b_ni0s = zeros(H,1);
 
-    %% prob to stop in ´n-1´ steps starting from 0.
+    %% prob di fermarsi in ´n-1´ passi partendo da 0.
     %p0_nmeno1 = ProbNew2(h,n-1,mu,s,0);
     % or equivalently
     % monomi
@@ -28,7 +28,6 @@ function b_ni0s = beta_ni_muSmallerThan0(h,n,H,mu,s, A_n_pre,B_n_pre,C_n_pre)
             a_nMeno1j = A_n_pre(j,:);
             c_nMeno1j = C_n_pre(j,:);
             for p = 0:m_nmeno1_j
-              % the following are all equivalent except of som numerics
                 % gamma_jp = (gammainc(-2/s*(Ij_l+(n-1)*mu),p+1) - gammainc(-2/s*(Ij_r+(n-1)*mu),p+1))*gamma(p+1)*(s/2)^(p+1)*(-1)^p*exp(-2*(n-1)*mu/s)
                 %y = sym('y');
                 %gamma_jp = int((y+(n-1)*mu)^p*exp(2*y/s), y,Ij_l, Ij_r);
@@ -40,7 +39,7 @@ function b_ni0s = beta_ni_muSmallerThan0(h,n,H,mu,s, A_n_pre,B_n_pre,C_n_pre)
             end
             B = B + c_nMeno1j*s*(exp(Ij_r/s)-exp(Ij_l/s));
         end
-        if H > 1
+        if H > 1 % && i+1<=H
             % extremes of integration
             Iistar_l = -(i_star-1)*mu;         
             Iistar_r =  min(-(i_star)*mu,h);  

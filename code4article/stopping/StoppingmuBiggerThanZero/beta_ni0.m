@@ -5,7 +5,7 @@ function b_ni0s = beta_ni0(h,n,L,mu,s, A_n_pre,B_n_pre,C_n_pre)
     b_ni0s = zeros(L,1);
     %% calcolo dei 'b_{n,i,0}'
     % prob di fermarsi in ´n-1´ passi partendo da 0.
-    %p0_nmeno1 = ProbNew2(h,n-1,mu,s,0);
+    %p0_nmeno1 = ProbN(h,n-1,mu,s,0);
     % equivalently
     m_n_1 =  min(n-1,L-1+1)-1;
     p = 0:m_n_1;
