@@ -12,7 +12,7 @@ n=4;
 num_samples=10000000;
 % Drift of the process - mean of the increment
 mu=-1.8;
-% standard error of the increment
+% standard error of the increment - it must be postive
 s=10;
 % initial condition
 x=1;
