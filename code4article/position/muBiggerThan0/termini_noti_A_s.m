@@ -44,7 +44,7 @@ function termini_noti = termini_noti_A_s(n,k,x,s, A_n_pre,B_n_pre,c_n_pre)
             b_nj = B_n_pre(:,j);
             % max degree of polynomial
             m_nj = min(j,n-1)-1;
-            % extreme of integration
+            % extremes of integration
            if ( j==n ) 
                 Ij_l = (n-1)*k;
                 Ij_r = (n-1)*k+x;
