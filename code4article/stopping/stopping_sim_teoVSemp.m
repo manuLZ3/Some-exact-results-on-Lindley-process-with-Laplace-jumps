@@ -1,0 +1,77 @@
+format long 
+% add to path the folders up 2 levels
+addpath(fileparts(pwd))
+addpath(fileparts((fileparts(pwd))))
+% add to path the folders below 1 levels
+addpath(genpath(pwd)) % useless
+
+
+%% Parameters
+series_length=70;
+num_samples=1000000;
+% Mean of incrementes - trend of Linldey process
+media=1;
+% standard error of increments
+s=1;
+% initial condition of the process
+posizione_init=0;
+% barrier 
+h=20;
+% greatest integer for which we want the theorical probability of stopping
+n_max=50;
+
+
+%% Empirical distribution
+FPTs = repelem(inf,num_samples);
+for sim = 1:num_samples
+    Tn = posizione_init;
+    for i = 1:series_length
+        Xn = laprnd(1, 1, media, s*sqrt(2));
+        Tn = max(Tn,0) + Xn;
+        if Tn>h
+            FPTs(sim) = i;
+            break;
+        end
+    end
+end
+
+edges = 0:series_length;
+l2=histogram(FPTs,edges, 'Normalization','probability'); hold on;
+valoriEmpririci = l2.Values;
+
+%% Theorical distribution
+ps_teo = zeros(1, n_max);
+
+if media > 0 && media < h    
+    fprintf("0<mu<h \n");
+    for i = 1:n_max
+            [ps_teo(i),A_n,B_n,C_n] = Prob(h, i, media, s, posizione_init);
+    end
+elseif media >= h
+    fprintf("h=<mu \n");
+    for n = 1:n_max
+        ps_teo(n) = Prob_N_conLuguale1(h, n, media, s, posizione_init);
+    end
+elseif media < 0 && media > -h
+    fprintf("-h<mu<0 \n");
+    for n = 1:n_max
+        ps_teo(n) = ProbN_muSmallerThan0(h, n, media, s, posizione_init);
+    end
+elseif media <= -h
+    fprintf("mu<=-h \n");
+    for n = 1:n_max
+        ps_teo(n) = ProbN_muSmallerThanMinusH(h, n, media, s, posizione_init);
+    end
+end
+
+
+
+%% Plotting
+for i=1:n_max
+        plot(i+0.5,ps_teo(i),'.b','MarkerSize',30); hold on;
+end
+
+legend('empirical', 'exact')
+xlabel('n')
+ylabel('P[N=n]')
+title(['h:',num2str(h),', \mu:',num2str(media),', \sigma:', num2str(s), ', x:', num2str(posizione_init)])
