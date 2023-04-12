@@ -10,7 +10,7 @@ addpath(genpath(pwd)) % useless
 series_length=70;
 num_samples=1000000;
 % Mean of incrementes - trend of Linldey process
-media=-0.4;
+media=0;
 % standard error of increments - it must be positive
 s=2;
 % initial condition of the process
@@ -61,6 +61,11 @@ elseif media < 0 && media <= -h
     fprintf("mu<=-h \n");
     for n = 1:n_max
         ps_teo(n) = ProbN_muSmallerThanMinusH(h, n, media, s, posizione_init);
+    end
+elseif media == 0
+    fprintf("mu=0 \n");
+    for n = 1:n_max
+        ps_teo(n) = ProbN_muEquals0(h, n, s, posizione_init);
     end
 end
 

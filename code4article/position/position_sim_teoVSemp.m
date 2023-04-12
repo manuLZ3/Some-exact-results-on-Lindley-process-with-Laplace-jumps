@@ -7,15 +7,15 @@ addpath(genpath(pwd));
 
 %% Parameters
 % time index of Lindley process
-n=4;
+n=3;
 % number of samples
 num_samples=10000000;
 % Drift of the process - mean of the increment
 mu=-1.8;
 % standard error of the increment - it must be postive
-s=10;
+s=4;
 % initial condition
-x=1;
+x=1.8;
 
 
 %% Simulated density
@@ -47,13 +47,13 @@ if mu >= 0
     theo_curve_rec = arrayfun(@(u) f_Tn_s(u,n,mu,x,s),u);
     % Teorical mass in zero
     c_rec = f_Tn_s(0,n,mu,x,s);
-elseif mu < -x 
-    fprintf('mu<-x \n')
+elseif mu <= -x 
+    fprintf('mu<=-x \n')
     theo_curve_rec = arrayfun(@(u) f_Tn_muMinoreMenoX(n,u,mu,x,s),u);
     % Teorical mass in zero
     c_rec = f_Tn_muMinoreMenoX(n,0,mu,x,s);
  elseif mu > -x  
-    fprintf('-x<=mu<0 \n')
+    fprintf('-x<mu<0 \n')
     theo_curve_rec = arrayfun(@(u) f_Tn_muMaggioreMenoX(n,u,mu,x,s),u);
     % Teorical mass in zero
     c_rec = f_Tn_muMaggioreMenoX(n,0,mu,x,s);
