@@ -10,7 +10,7 @@ addpath(genpath(pwd)) % useless
 series_length=70;
 num_samples=1000000;
 % Mean of incrementes - trend of Linldey process
-media=0;
+media=-2;
 % standard error of increments - it must be positive
 s=2;
 % initial condition of the process

@@ -7,15 +7,15 @@ addpath(genpath(pwd));
 
 %% Parameters
 % time index of Lindley process
-n=3;
+n=4;
 % number of samples
 num_samples=10000000;
 % Drift of the process - mean of the increment
-mu=-1.8;
+mu=-1.7;
 % standard error of the increment - it must be postive
-s=4;
+s=1;
 % initial condition
-x=1.8;
+x=2;
 
 
 %% Simulated density
