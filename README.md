@@ -1,4 +1,4 @@
-# Some-exact-results-on-Linldey-process
+# Some exact results on Lindley process with Laplace jumps
 Here we provide the codes to generate analyitical results as decribed in [cit]
 
 
