@@ -36,8 +36,10 @@ for sim = 1:num_samples
 end
 
 edges = 0:series_length;
-l2=histogram(FPTs,edges, 'Normalization','probability'); hold on;
+l2=histogram(FPTs,edges, 'Normalization','probability'); hold off;
 valoriEmpririci = l2.Values;
+bar(valoriEmpririci); hold on
+
 
 %% Theorical distribution
 ps_teo = zeros(1, n_max);
@@ -73,7 +75,7 @@ end
 
 %% Plotting
 for i=1:n_max
-        plot(i+0.5,ps_teo(i),'.b','MarkerSize',30); hold on;
+        plot(i,ps_teo(i),'.b','MarkerSize',30); hold on;
 end
 
 legend('empirical', 'exact')
