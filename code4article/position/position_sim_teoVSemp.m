@@ -11,7 +11,7 @@ n=4;
 % number of samples
 num_samples=10000000;
 % Drift of the process - mean of the increment
-mu=-1.7;
+mu=-2.5;
 % standard error of the increment - it must be postive
 s=1;
 % initial condition

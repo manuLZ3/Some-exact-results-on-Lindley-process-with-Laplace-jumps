@@ -7,18 +7,18 @@ addpath(genpath(pwd)) % useless
 
 
 %% Parameters
-series_length=70;
+series_length=40;
 num_samples=1000000;
 % Mean of incrementes - trend of Linldey process
-media=-2;
+media=-0.5;
 % standard error of increments - it must be positive
-s=2;
+s=1;
 % initial condition of the process
-posizione_init=6;
+posizione_init=0;
 % barrier - it must be positive
-h=8;
+h=2;
 % greatest integer for which we want the theorical probability of stopping
-n_max=50;
+n_max=40;
 
 
 %% Empirical distribution
@@ -36,13 +36,16 @@ for sim = 1:num_samples
 end
 
 edges = 0:series_length;
-l2=histogram(FPTs,edges, 'Normalization','probability'); hold on;
+l2=histogram(FPTs,edges, 'Normalization','probability'); hold off;
 valoriEmpririci = l2.Values;
+
+bar(valoriEmpririci(2:end)); hold on
+
 
 %% Theorical distribution
 ps_teo = zeros(1, n_max);
 
-if media > 0 && media < h    
+if media > 0 && media < h   
     fprintf("0<mu<h \n");
     for i = 1:n_max
             [ps_teo(i),A_n,B_n,C_n] = ProbN(h, i, media, s, posizione_init);
@@ -50,7 +53,7 @@ if media > 0 && media < h
 elseif media > 0 && media >= h
     fprintf("h=<mu \n");
     for n = 1:n_max
-        ps_teo(n) = ProbN_muBiggerThanH(h, n, media, s, posizione_init);
+        [ps_teo(n), b_n] = ProbN_muBiggerThanH(h, n, media, s, posizione_init);
     end
 elseif media < 0 && media > -h
     fprintf("-h<mu<0 \n");
@@ -73,7 +76,7 @@ end
 
 %% Plotting
 for i=1:n_max
-        plot(i+0.5,ps_teo(i),'.b','MarkerSize',30); hold on;
+    plot(i,ps_teo(i),'.b','MarkerSize',30); hold on;
 end
 
 legend('empirical', 'exact')
