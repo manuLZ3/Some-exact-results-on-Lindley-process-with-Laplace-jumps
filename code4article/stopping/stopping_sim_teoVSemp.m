@@ -24,11 +24,11 @@ n_max=40;
 %% Empirical distribution
 FETs = repelem(inf,num_samples);
 for sim = 1:num_samples
-    Tn = posizione_init;
+    Wn = posizione_init;
     for i = 1:series_length
-        Xn = laprnd(1, 1, media, s*sqrt(2));
-        Tn = max(Tn,0) + Xn;
-        if Tn>h
+        Zn = laprnd(1, 1, media, s*sqrt(2));
+        Wn = max(Wn,0) + Zn;
+        if Wn>h
             FETs(sim) = i;
             break;
         end
