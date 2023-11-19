@@ -11,7 +11,7 @@ n=4;
 % number of samples
 num_samples=10000000;
 % Drift of the process - mean of the increment
-mu=-1;
+mu=-0.3;
 % standard error of the increment - it must be postive
 s=1;
 % initial condition
@@ -50,7 +50,7 @@ if mu >= 0
     c_rec = f_Tn_s(0,n,mu,x,s);
 elseif mu <= -x 
     fprintf('mu<=-x \n')
-    [B_n, c_n] = f_Tn_coefficients_muMinoreMenoX(n,mu,x,s)
+    [B_n, c_n] = f_Tn_coefficients_muMinoreMenoX(n,mu,x,s);
     theo_curve_rec = arrayfun(@(u) f_Tn_muMinoreMenoX(n,u,mu,x,s,B_n,c_n),u);
     % Teorical mass in zero
     c_rec = f_Tn_muMinoreMenoX(n,0,mu,x,s);

@@ -22,23 +22,22 @@ n_max=40;
 
 
 %% Empirical distribution
-FPTs = repelem(inf,num_samples);
+FETs = repelem(inf,num_samples);
 for sim = 1:num_samples
     Tn = posizione_init;
     for i = 1:series_length
         Xn = laprnd(1, 1, media, s*sqrt(2));
         Tn = max(Tn,0) + Xn;
         if Tn>h
-            FPTs(sim) = i;
+            FETs(sim) = i;
             break;
         end
     end
 end
 
 edges = 0:series_length;
-l2=histogram(FPTs,edges, 'Normalization','probability'); hold off;
+l2=histogram(FETs,edges, 'Normalization','probability'); hold off;
 valoriEmpririci = l2.Values;
-
 bar(valoriEmpririci(2:end)); hold on
 
 
