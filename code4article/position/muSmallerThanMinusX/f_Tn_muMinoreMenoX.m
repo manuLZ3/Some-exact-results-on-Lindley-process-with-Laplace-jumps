@@ -1,7 +1,9 @@
-function y = f_Tn_muMinoreMenoX(n,u,mu,x,s)
+function y = f_Tn_muMinoreMenoX(n,u,mu,x,s,B_n,c_n)
    
    %% formulae (3.84a,3.85a,3.84c)
-   [B_n, c_n] = f_Tn_coefficients_muMinoreMenoX(n,mu,x,s);
+   if nargin == 5
+        [B_n, c_n] = f_Tn_coefficients_muMinoreMenoX(n,mu,x,s);
+   end
 
    if u < 0
        y = 0;

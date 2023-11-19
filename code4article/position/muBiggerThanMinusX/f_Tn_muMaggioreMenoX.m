@@ -1,7 +1,9 @@
-function y = f_Tn_muMaggioreMenoX(n,u,mu,x,s)
+function y = f_Tn_muMaggioreMenoX(n,u,mu,x,s, A_n, B_n, c_n)
    
    %% formulae (3.60)-(3.62)
-   [A_n, B_n, c_n] = f_Tn_coefficients_muMaggioreMenoX(n,mu,x,s);
+   if nargin == 5
+        [A_n, B_n, c_n] = f_Tn_coefficients_muMaggioreMenoX(n,mu,x,s);
+   end
 
    if u < 0
        y = 0;

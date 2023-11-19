@@ -1,10 +1,8 @@
-function y = f_Tn_s(u,n,k,x,s, coefficients) 
+function y = f_Tn_s(u,n,k,x,s,A_n,B_n,c_n) 
 
     %% create coefficients
-    if ~exist('coefficients','var')
+    if nargin == 5
         [A_n,B_n,c_n] = f_Tn_coefficients_s(n,k,x,s);
-    else 
-        [A_n,B_n,c_n] = coefficients;
     end
 
     %% identify the bin of partition at which `u` belongs to
@@ -42,16 +40,3 @@ function y = f_Tn_s(u,n,k,x,s, coefficients)
     end
 end
 
-%{
-function y = f_T1(u,x,k,s)
-if u < 0
-   y = 0;
-elseif u == 0
-   y = exp((-x-k)/s)/2;
-elseif u < k+x
-   y = exp((u-x-k)/s)/(2*s);
-else
-   y = exp((-u+x+k)/s)/(2*s);
-end
-end
-%}

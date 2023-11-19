@@ -10,7 +10,7 @@ addpath(genpath(pwd)) % useless
 series_length=40;
 num_samples=1000000;
 % Mean of incrementes - trend of Linldey process
-media=-0.5;
+media=0;
 % standard error of increments - it must be positive
 s=1;
 % initial condition of the process
@@ -76,7 +76,7 @@ end
 
 %% Plotting
 for i=1:n_max
-    plot(i,ps_teo(i),'.b','MarkerSize',30); hold on;
+    plot(i,ps_teo(i),'.r','MarkerSize',30); hold on;
 end
 
 legend('empirical', 'exact')
